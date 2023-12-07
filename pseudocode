@@ -1,0 +1,29 @@
+Define required constants: - doesnt change
+    define squares with an img
+    
+
+Define required variables used to track the state of the game:
+    deck of cards
+    what card is currently picked
+    use a board array for squares
+    Use a winner variable after board has been completed
+    ICE BOX
+    the current time
+    moves tally
+
+Store elements on the page that will be accessed in code more than once in variables"
+ Store the 20 elements that represent the squares on the page.
+
+ Upon loading the app should:
+    shuffle the cards
+    put cards on the board
+    ICE BOX
+    initialize a timer
+    initialize moves tally
+
+ Handle a player clicking a square:   
+        need check if a card has already been picked
+        if there is no card picked, that card is the new picked card
+        if there is a card already picked, compare the next card with the picked card
+            if image matches, card remains faced up (grayed out)
+            if images do not match, card flips over
