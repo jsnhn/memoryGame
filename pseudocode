@@ -1,29 +1,51 @@
+Users will be shown a title card displaying the images that will be shown in game, as well as a 'play' button that will initate the game.
+
+Once the user clicks play, a 4x4 board will appear along with 16 individual cards. The board will randomize the cards at the start of every game. Along with the board appearing, a count up timer and a turns counter will also be displayed.
+
+At the beginning of the game, images for all 16 cards will display the same image indicated that the card is turned upside down.
+
+If users click on a card, the card  will reveal a new img. 
+
+Users are then able to click on another card, which would also reveal an image. 
+
+If the images on cards match, the cards will be removed from the board.
+
+If the cards do not match, they will flip back over displaying the original image.
+
+The game will be over once all the images matched and the board is empty.
+
+Once the game is over a new title card will appear, which will display that the user has won. The game winner title card will also show
+the timer and will as a 'play again button'
+
+If the user decides to play again, the board will be randomized and users will be able to play again.
+
+
 Define required constants: - doesnt change
     define squares with an img
     
 
 Define required variables used to track the state of the game:
-    deck of cards
+    deck of cards/images - we need to know 1. the image on the card 2. if it is flipped or not
     what card is currently picked
     use a board array for squares
-    Use a winner variable after board has been completed
-    ICE BOX
+    Use a winner variable after board has been completed - is there a winner?
     the current time
-    moves tally
+    turns tally
 
 Store elements on the page that will be accessed in code more than once in variables"
- Store the 20 elements that represent the squares on the page.
+ Store the 16 elements that represent the squares on the page.
 
  Upon loading the app should:
-    shuffle the cards
+    randomize the cards/images
     put cards on the board
-    ICE BOX
     initialize a timer
     initialize moves tally
 
  Handle a player clicking a square:   
         need check if a card has already been picked
-        if there is no card picked, that card is the new picked card
         if there is a card already picked, compare the next card with the picked card
-            if image matches, card remains faced up (grayed out)
+            if image matches, cards will be removed from the board
             if images do not match, card flips over
+
+
+
