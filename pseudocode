@@ -2,7 +2,7 @@ Users will be shown a title card displaying the images that will be shown in gam
 
 Once the user clicks play, a 4x4 board will appear along with 16 individual cards. The board will randomize the cards at the start of every game. Along with the board appearing, a count up timer and a turns counter will also be displayed.
 
-At the beginning of the game, images for all 16 cards will display the same image indicated that the card is turned upside down.
+At the beginning of the game, images for all 16 cards will display the same image indicating that the cards are turned upside down.
 
 If users click on a card, the card  will reveal a new img. 
 
@@ -12,10 +12,10 @@ If the images on cards match, the cards will be removed from the board.
 
 If the cards do not match, they will flip back over displaying the original image.
 
-The game will be over once all the images matched and the board is empty.
+The game will be over once all the images are matched and the board is empty.
 
 Once the game is over a new title card will appear, which will display that the user has won. The game winner title card will also show
-the timer and will as a 'play again button'
+the timer as well as a 'play again button.'
 
 If the user decides to play again, the board will be randomized and users will be able to play again.
 
@@ -32,7 +32,7 @@ Define required variables used to track the state of the game:
     the current time
     turns tally
 
-Store elements on the page that will be accessed in code more than once in variables"
+Store elements on the page that will be accessed in code more than once in variables
  Store the 16 elements that represent the squares on the page.
 
  Upon loading the app should:
@@ -41,7 +41,7 @@ Store elements on the page that will be accessed in code more than once in varia
     initialize a timer
     initialize moves tally
 
- Handle a player clicking a square:   
+Player clicking a square:   
         need check if a card has already been picked
         if there is a card already picked, compare the next card with the picked card
             if image matches, cards will be removed from the board
