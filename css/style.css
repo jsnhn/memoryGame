@@ -8,46 +8,26 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 3%;
 }
 
-h1 img {
-    display: flex;
-
-    flex-wrap: wrap;
-    align-items: flex-start;
-
+.all-img {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    grid-gap: 10px;
+    max-width: 50%;
+    margin: 2% 0% 0% 25%;
+    background-color: aqua;
 }
 
-.pikachu {
-    padding: 0% 0% 0% 15%;
-    width: 29%;
+.all-img img {
+    width: 100%; /* Ensure images take up the full width of their grid cell */
+    max-width: 100%; /* Ensure images don't exceed the width of their grid cell */
 }
 
-.jigglypuff {
-    width: 15%;
-}
 
-.mr-mime {
-    width: 15%;
-}
-
-.psyduck {
-    width: 15%;
-}
-
-.jynx {
-    width: 15%;
-}
-
-.fuecoco {
-    margin-left: 14%;
-    width: 15%;
-}
-
-.snorlax {
-    width: 15%;
-}
-
-.ponyta {
-    width: 15%;
+#ply-btn {
+    margin: 5% 0% 5% 35%;
+    width: 30%;
+    font-size: larger;
 }
