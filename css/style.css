@@ -1,0 +1,53 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 img {
+    display: flex;
+
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+}
+
+.pikachu {
+    padding: 0% 0% 0% 15%;
+    width: 29%;
+}
+
+.jigglypuff {
+    width: 15%;
+}
+
+.mr-mime {
+    width: 15%;
+}
+
+.psyduck {
+    width: 15%;
+}
+
+.jynx {
+    width: 15%;
+}
+
+.fuecoco {
+    margin-left: 14%;
+    width: 15%;
+}
+
+.snorlax {
+    width: 15%;
+}
+
+.ponyta {
+    width: 15%;
+}
