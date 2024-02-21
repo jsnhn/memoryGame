@@ -48,16 +48,23 @@ h1 {
     grid-template-columns: repeat(4, 150px);
     width: 456px;
     height: 456px;
-}
-
-.box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin: 3% 0% 0% 30%;
+    gap: 10px;
 }
 
 #row-container {
     display: flex;
-    gap: 300px;
+    gap: 200px;
+    margin: 3% 25% 0% 33%;
+    background-color: aqua;
 }
+
+.box img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+}
+
 

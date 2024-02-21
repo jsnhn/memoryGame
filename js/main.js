@@ -48,15 +48,15 @@ const playBtn = document.createElement('button'); //use the html
 playBtn.addEventListener('click', handleStartClick)
 
 /*----- functions -----*/
-render()
+// render()
 
-function render() {
-    if (!gameStart) {
-        renderSplash()
-    } else {
-        renderMain()
-    }
-};
+// function render() {
+//     if (!gameStart) {
+//         renderSplash()
+//     } else {
+//         renderMain()
+//     }
+// };
 
 function renderSplash() {
     const splashPage = document.createElement('div')
@@ -72,7 +72,7 @@ function renderSplash() {
         imgEl.className = poke.name
         imgEl.src = poke.img
         allImgEl.append(imgEl)
-    })
+    });
     
     playBtn.id = 'ply-btn'
     playBtn.innerHTML = '<img src="https://fontmeme.com/permalink/240220/938b7d297c1cf42e4f0bf445b23a827e.png" alt="">'
