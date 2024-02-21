@@ -15,6 +15,7 @@ h1 {
     align-items: center;
     margin-top: 3%;
 }
+
 .pikachu {
     padding: 10% 0% 0% 10%;
 }
@@ -41,3 +42,22 @@ h1 {
     width: 20%;
     background-color: rgba(77, 255, 0, 0.832);
 }
+
+#board-container {
+    display: grid;
+    grid-template-columns: repeat(4, 150px);
+    width: 456px;
+    height: 456px;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#row-container {
+    display: flex;
+    gap: 300px;
+}
+
