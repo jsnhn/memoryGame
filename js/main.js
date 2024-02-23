@@ -95,7 +95,14 @@ function createDeck(){
 }
 
 function shuffleDeck(newDeck) {
-    const shuffledDeck = [];
+    const shuffledDeck = [...newDeck];
+    
+    for(let i = shuffledDeck.length - 1; i > 0; i--) {
+        const random = Math.floor(Math.random() * (i + 1))
+        const temp = shuffledDeck[i]
+        shuffledDeck[i] = shuffledDeck[random]
+        shuffledDeck[random] = temp
+    }
 
     return shuffledDeck
 }
