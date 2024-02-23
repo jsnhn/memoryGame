@@ -52,7 +52,7 @@ h1 {
     gap: 10px;
 }
 
-#row-container {
+#display-container {
     display: flex;
     gap: 200px;
     margin: 3% 25% 0% 33%;
