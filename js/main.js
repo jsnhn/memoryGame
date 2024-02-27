@@ -40,6 +40,8 @@ const boardEl = document.createElement('div');
 /*----- event listeners -----*/
 playBtn.addEventListener('click', handleStartClick)
 
+
+
 /*----- functions -----*/
 render()
 
@@ -82,6 +84,17 @@ function handleStartClick(){
     deck = shuffleDeck(createDeck()) //createDeck gets invoked first
     render()
 };// u need to update all impacted state, and just call the render button
+
+function handleClick(e) {
+    const clickedCardIndex = e.target.id; 
+    const clickedCard = deck[clickedCardIndex]
+    console.log(clickedCard)
+    
+
+      //game logic?
+}
+
+
 
 function createDeck(){
     const newDeck = [];
@@ -141,6 +154,10 @@ function renderBoard() {
        
         boxEl.append(imgEl)
         boardEl.append(boxEl)
+
+        boxEl.addEventListener('click', handleClick)
+        
+
     })
 
     // bodyEl.innerHTML = ''
@@ -180,6 +197,9 @@ function renderMain() {
     bodyEl.append(mainPage)
     
 
+};
+
+
 //     bodyEl.innerHTML = `
 //     <div id="main-page">
 //         <div id="display-container">
@@ -206,5 +226,3 @@ function renderMain() {
 //         </div>
 //     </div>
 //     `
-};
-
