@@ -88,10 +88,16 @@ function handleStartClick(){
 function handleClick(e) {
     const clickedCardIndex = e.target.id; 
     const clickedCard = deck[clickedCardIndex]
-    console.log(clickedCard)
-    
 
-      //game logic?
+if(clickedCard.isFlipped) {
+    return;
+}
+clickedCard.flip()
+
+
+console.log(clickedCard)
+render()
+
 }
 
 
@@ -159,9 +165,6 @@ function renderBoard() {
         
 
     })
-
-    // bodyEl.innerHTML = ''
-    // bodyEl.append(mainPage)
 
 };
 
