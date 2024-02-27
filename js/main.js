@@ -78,7 +78,6 @@ function renderSplash() {
     bodyEl.append(splashPage)
 };
 
-
 function handleStartClick(){
     gameStart = true;
     deck = shuffleDeck(createDeck()) //createDeck gets invoked first
@@ -89,17 +88,37 @@ function handleClick(e) {
     const clickedCardIndex = e.target.id; 
     const clickedCard = deck[clickedCardIndex]
 
-if(clickedCard.isFlipped) {
-    return;
+    if (clickedCard.isFlipped) {
+        return;
+    }
+
+    clickedCard.flip()
+    checkCards()
+
+    console.log(clickedCard)
+    render()
 }
-clickedCard.flip()
 
+function checkCards() {
+    const flippedCards = [];
 
-console.log(clickedCard)
-render()
+    deck.forEach(function(card){
+        if (card.isFlipped) {
+            flippedCards.push(card)
+        }
+    });
 
+    if (flippedCards.length === 2) { // checks exactly for 2 cards.
+        if(flippedCards[0].name === flippedCards[1].name) {
+            console.log ('match')
+        } else {
+            console.log ('wrong')
+            flippedCards[0].flip()
+            flippedCards[1].flip()
+        }
+    }
+        render()
 }
-
 
 
 function createDeck(){
