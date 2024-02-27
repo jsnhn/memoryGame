@@ -16,7 +16,7 @@ const POKEMON = [
 /*----- state variables -----*/
 let gameStart = false;
 
-let deck
+let deck, firstPick, winner
 
 /*----- classes -----*/
 class Card {
@@ -48,6 +48,8 @@ render()
 function render() {
     if (!gameStart) {
         renderSplash()
+    } else if (winner) {
+        // render the win page
     } else {
         renderMain()
     }
@@ -80,6 +82,8 @@ function renderSplash() {
 
 function handleStartClick(){
     gameStart = true;
+    firstPick = null;
+    winner = false;
     deck = shuffleDeck(createDeck()) //createDeck gets invoked first
     render()
 };// u need to update all impacted state, and just call the render button
@@ -88,36 +92,49 @@ function handleClick(e) {
     const clickedCardIndex = e.target.id; 
     const clickedCard = deck[clickedCardIndex]
 
-    if (clickedCard.isFlipped) {
-        return;
+    if (clickedCard.isFlipped) return;
+    
+    clickedCard.flip()
+
+    if (firstPick) { // only if it is true, but firstpick null
+        console.log('this is second pick ')
+        const match = checkCards(firstPick, clickedCard) //do the cards match or not?
+        
+        
+        if(!match){
+            // remove eventlistner for the board here
+            setTimeout(function(){
+                clickedCard.flip()
+                firstPick.flip()
+                firstPick = null // youre done comparing the 2
+                // add event listner back here
+                render()
+            }, 1000)
+        } else {
+            firstPick = null
+            winner = checkWinner()
+        }
+
+    } else {
+        console.log('this is first pick ')
+        firstPick = clickedCard
     }
 
-    clickedCard.flip()
-    checkCards()
-
-    console.log(clickedCard)
-    render()
+    render() 
 }
 
-function checkCards() {
-    const flippedCards = [];
+function checkWinner() {
+// have this function return true when the game is won or false otherwise.
+};
 
-    deck.forEach(function(card){
-        if (card.isFlipped) {
-            flippedCards.push(card)
-        }
-    });
+function checkCards(card1, card2) {
+    return card1.name === card2.name;
+//    if (card1.name === card2.name) {
+//         return true;
+//    } else {
+//         return false;
+//    }
 
-    if (flippedCards.length === 2) { // checks exactly for 2 cards.
-        if(flippedCards[0].name === flippedCards[1].name) {
-            console.log ('match')
-        } else {
-            console.log ('wrong')
-            flippedCards[0].flip()
-            flippedCards[1].flip()
-        }
-    }
-        render()
 }
 
 
