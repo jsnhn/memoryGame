@@ -35,11 +35,13 @@ class Card {
 const bodyEl = document.querySelector('body');
 const playBtn = document.createElement('button'); //use the html
 const boardEl = document.createElement('div');
+const rstBtn = document.createElement('button')
 
 
 /*----- event listeners -----*/
 playBtn.addEventListener('click', handleStartClick)
 boardEl.addEventListener('click', handleClick)
+rstBtn.addEventListener('click', handleStartClick)
 
 
 /*----- functions -----*/
@@ -49,7 +51,7 @@ function render() {
     if (!gameStart) {
         renderSplash()
     } else if (winner) {
-        // render the win page
+       renderWinnerPage()
     } else {
         renderMain()
     }
@@ -92,7 +94,11 @@ function handleClick(e) {
     const clickedCardIndex = e.target.id; 
     const clickedCard = deck[clickedCardIndex]
 
-    if (clickedCard.isFlipped) return;
+    if (
+        clickedCard.isFlipped
+        
+        ) //explain?
+        return;
     
     clickedCard.flip()
 
@@ -124,8 +130,49 @@ function handleClick(e) {
 }
 
 function checkWinner() {
+    const allCardsFlipped = deck.every(function(card){
+       return card.isFlipped
+    }) 
+
+        if (allCardsFlipped) {
+            setTimeout(function(){
+                winner = true
+                console.log('winner')
+                render()
+            }, 1000);
+        } else {
+            winner = false;
+        }
+        return winner;
 // have this function return true when the game is won or false otherwise.
 };
+
+function renderWinnerPage() {
+    const winnerPage = document.createElement('div')
+    winnerPage.id = 'winner'//changing the id
+    
+    const header = document.createElement('h1')
+    header.innerHTML = '<img src="https://fontmeme.com/permalink/240228/1471d08b990f0ad5408f18efebb9de45.png" alt="">'
+    
+    const allImgEl = document.createElement('div')
+    allImgEl.className = 'all-img'
+    POKEMON.forEach(function(poke){
+        const imgEl = document.createElement('img')
+        imgEl.className = poke.name
+        imgEl.src = poke.img
+        allImgEl.append(imgEl)
+    });
+    
+    rstBtn.id = 'rst-btn'
+    rstBtn.innerHTML = '<img src="https://fontmeme.com/permalink/240228/8926cac3a56e8ab22c7edd1b8c8f8710.png" alt="">'
+
+    winnerPage.append(header, allImgEl, rstBtn)
+    
+    bodyEl.innerHTML = ''
+    bodyEl.append(winnerPage)
+
+    console.log(winnerPage)
+}
 
 function checkCards(card1, card2) {
     return card1.name === card2.name;
@@ -234,8 +281,6 @@ function renderMain() {
     
     bodyEl.innerHTML = '' //clears the splash page
     bodyEl.append(mainPage)
-    
-
 };
 
 

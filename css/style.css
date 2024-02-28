@@ -43,6 +43,12 @@ h1 {
     background-color: rgba(77, 255, 0, 0.832);
 }
 
+#rst-btn {
+    margin: 3% 0% 5% 40%;
+    width: 20%;
+    background-color: rgba(77, 255, 0, 0.832);
+}
+
 #board-container {
     display: grid;
     grid-template-columns: repeat(4, 150px);
