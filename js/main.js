@@ -10,7 +10,6 @@ const POKEMON = [
     { name: 'ponyta', img: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/077.png'}
 ]
 
-
 // not a card for your game, can be used later create a card.
 
 /*----- state variables -----*/
@@ -96,7 +95,6 @@ function handleClick(e) {
 
     if (
         clickedCard.isFlipped
-        
         ) //explain?
         return;
     
@@ -105,7 +103,6 @@ function handleClick(e) {
     if (firstPick) { // only if it is true, but firstpick null
         console.log('this is second pick ')
         const match = checkCards(firstPick, clickedCard) //do the cards match or not?
-        
         
         if(!match){
             boardEl.removeEventListener('click', handleClick)
@@ -120,12 +117,10 @@ function handleClick(e) {
             firstPick = null
             winner = checkWinner()
         }
-
     } else {
         console.log('this is first pick ')
         firstPick = clickedCard
     }
-
     render() 
 }
 
@@ -135,15 +130,10 @@ function checkWinner() {
     }) 
 
         if (allCardsFlipped) {
-            setTimeout(function(){
-                winner = true
-                console.log('winner')
-                render()
-            }, 1000);
+            return true
         } else {
-            winner = false;
+            return false;
         }
-        return winner;
 // have this function return true when the game is won or false otherwise.
 };
 
@@ -170,8 +160,6 @@ function renderWinnerPage() {
     
     bodyEl.innerHTML = ''
     bodyEl.append(winnerPage)
-
-    console.log(winnerPage)
 }
 
 function checkCards(card1, card2) {
@@ -181,13 +169,11 @@ function checkCards(card1, card2) {
 //    } else {
 //         return false;
 //    }
-
 }
 
 
 function createDeck(){
     const newDeck = [];
-
 
     POKEMON.forEach(function(poke){
        newDeck.push(new Card(poke.name, poke.img))
@@ -195,7 +181,7 @@ function createDeck(){
     });
 
     return newDeck;
-}
+};
 
 // function shuffleDeck(newDeck) {
 //     const shuffledDeck = [];
@@ -220,10 +206,10 @@ function shuffleDeck(newDeck) {
         const temp = shuffledDeck[i]
         shuffledDeck[i] = shuffledDeck[random]
         shuffledDeck[random] = temp
-    }
+    };
 
-    return shuffledDeck
-}
+    return shuffledDeck;
+};
 
 function renderBoard() {
     boardEl.id = 'board-container'
@@ -239,16 +225,14 @@ function renderBoard() {
             imgEl.src = card.img
         } else {
             imgEl.src = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/12ecb7ae-7059-48df-a4f8-2e3fb7858606/d47rmjf-de88a574-49c8-4dcf-9df4-7e11722e8bec.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzEyZWNiN2FlLTcwNTktNDhkZi1hNGY4LTJlM2ZiNzg1ODYwNlwvZDQ3cm1qZi1kZTg4YTU3NC00OWM4LTRkY2YtOWRmNC03ZTExNzIyZThiZWMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.loswJAzDdppbY9aZ-eQs3DKvAdY7W91eosZhapx7gFU"
-        }
+        };
        
         boxEl.append(imgEl)
         boardEl.append(boxEl)
 
         // boxEl.addEventListener('click', handleClick) - dont do this. the parent is boardEl
         
-
-    })
-
+    });
 };
 
 function createDisplay(){
