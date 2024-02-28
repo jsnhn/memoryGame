@@ -15,7 +15,9 @@ const POKEMON = [
 //*----- state variables -----*/
 let gameStart = false;
 
-let deck, firstPick, winner
+
+
+let deck, firstPick, winner, turns, timer
 
 //*----- classes -----*/
 class Card {
@@ -85,6 +87,8 @@ function handleStartClick(){
     gameStart = true;
     firstPick = null;
     winner = false;
+    turns = 0;
+    timer = 0;
     deck = shuffleDeck(createDeck()) //* createDeck gets invoked first
     render()
 };//* u need to update all impacted state, and just call the render button
@@ -92,34 +96,35 @@ function handleStartClick(){
 function handleClick(e) {
     const clickedCardIndex = e.target.id; 
     const clickedCard = deck[clickedCardIndex]
-
+    
     if (
         clickedCard.isFlipped
         ) //! get rid of the click in between the boxes?
         return;
-    
-    clickedCard.flip()
-
-    if (firstPick) { //* only if it is true, but firstpick null
-        console.log('this is second pick ')
-        const match = checkCards(firstPick, clickedCard) //* do the cards match or not?
         
-        if(!match){
-            boardEl.removeEventListener('click', handleClick)
-            setTimeout(function(){
-                clickedCard.flip()
-                firstPick.flip()
-                firstPick = null //* youre done comparing the 2
-                boardEl.addEventListener('click', handleClick)
-                render()
-            }, 1000)
+        clickedCard.flip()
+        
+        if (firstPick) { //* only if it is true, but firstpick null
+            console.log('this is second pick ')
+            const match = checkCards(firstPick, clickedCard) //* do the cards match or not?
+            
+            if(!match){
+                boardEl.removeEventListener('click', handleClick)
+                setTimeout(function(){
+                    clickedCard.flip()
+                    firstPick.flip()
+                    firstPick = null //* youre done comparing the 2
+                    boardEl.addEventListener('click', handleClick)
+                    render()
+                }, 1000)
+            } else {
+                firstPick = null
+                winner = checkWinner()
+            }
         } else {
-            firstPick = null
-            winner = checkWinner()
-        }
-    } else {
-        console.log('this is first pick ')
-        firstPick = clickedCard
+            console.log('this is first pick ')
+            firstPick = clickedCard
+            turns++
     }
     render() 
 }
@@ -239,13 +244,14 @@ function createDisplay(){
     const displayContainer = document.createElement('div')
     displayContainer.id = 'display-container'
     
-    const timerEl = document.createElement('h2');
+    const timerEl = document.createElement('div');
     timerEl.className = 'timer'
-    timerEl.innerHTML = '<img src="https://fontmeme.com/permalink/240221/3a5350d392655cfb628566cb8ee0b398.png" alt="">' //change this later to a text, or dont use h2
+    timerEl.innerHTML = '<img src="https://fontmeme.com/permalink/240221/3a5350d392655cfb628566cb8ee0b398.png" alt="">${timer}</img>' //change this later to a text, or dont use h2
 
-    const turnsEl = document.createElement('h2')
+    const turnsEl = document.createElement('div')
     turnsEl.className = 'turns'
-    turnsEl.innerHTML = '<img src="https://fontmeme.com/permalink/240221/d93f51fb2e904bdf5dc8ddf7a0dfe4c4.png" alt=""></img>'
+    turnsEl.innerHTML = `<img src="https://fontmeme.com/permalink/240221/d93f51fb2e904bdf5dc8ddf7a0dfe4c4.png" alt="">${turns}</img>`; //* be sure to wrap the whole line in backticks
+    
 
     displayContainer.append(timerEl, turnsEl)
     return displayContainer
@@ -271,8 +277,8 @@ function renderMain() {
 //     bodyEl.innerHTML = `
 //     <div id="main-page">
 //         <div id="display-container">
-//             <h2 class="timer"><img src="https://fontmeme.com/permalink/240221/3a5350d392655cfb628566cb8ee0b398.png" alt=""></h2>
-//             <h2 class="turns"><img src="https://fontmeme.com/permalink/240221/d93f51fb2e904bdf5dc8ddf7a0dfe4c4.png" alt=""></h2>
+//             <div class="timer"><img src="https://fontmeme.com/permalink/240221/3a5350d392655cfb628566cb8ee0b398.png" alt=""></div>
+//             <div class="turns"><img src="https://fontmeme.com/permalink/240221/d93f51fb2e904bdf5dc8ddf7a0dfe4c4.png" alt=""></div>
 //         </div>
 //         <div id="board-container">
 //             <div class="box" id="0"><img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/12ecb7ae-7059-48df-a4f8-2e3fb7858606/d47rmjf-de88a574-49c8-4dcf-9df4-7e11722e8bec.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzEyZWNiN2FlLTcwNTktNDhkZi1hNGY4LTJlM2ZiNzg1ODYwNlwvZDQ3cm1qZi1kZTg4YTU3NC00OWM4LTRkY2YtOWRmNC03ZTExNzIyZThiZWMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.loswJAzDdppbY9aZ-eQs3DKvAdY7W91eosZhapx7gFU" alt=""></div>
