@@ -1,4 +1,4 @@
-/*----- constants -----*/
+//*----- constants -----*/
 const POKEMON = [
     { name: 'pikachu',img: 'https://upload.wikimedia.org/wikipedia/en/thumb/7/73/Pikachu_artwork_for_Pok%C3%A9mon_Red_and_Blue.webp/220px-Pikachu_artwork_for_Pok%C3%A9mon_Red_and_Blue.webp.png'},
     { name: 'jigglypuff', img: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/039.png'},
@@ -10,14 +10,14 @@ const POKEMON = [
     { name: 'ponyta', img: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/077.png'}
 ]
 
-// not a card for your game, can be used later create a card.
+//* not a card for your game, can be used later create a card.
 
-/*----- state variables -----*/
+//*----- state variables -----*/
 let gameStart = false;
 
 let deck, firstPick, winner
 
-/*----- classes -----*/
+//*----- classes -----*/
 class Card {
     constructor(name, img) {
         this.name = name;
@@ -30,20 +30,20 @@ class Card {
     }
 }
 
-/*----- cached elements  -----*/
+//*----- cached elements  -----*/
 const bodyEl = document.querySelector('body');
-const playBtn = document.createElement('button'); //use the html
+const playBtn = document.createElement('button'); //* use the html
 const boardEl = document.createElement('div');
 const rstBtn = document.createElement('button')
 
 
-/*----- event listeners -----*/
+//*----- event listeners -----*/
 playBtn.addEventListener('click', handleStartClick)
 boardEl.addEventListener('click', handleClick)
 rstBtn.addEventListener('click', handleStartClick)
 
 
-/*----- functions -----*/
+//*----- functions -----*/
 render()
 
 function render() {
@@ -58,7 +58,7 @@ function render() {
 
 function renderSplash() {
     const splashPage = document.createElement('div')
-    splashPage.id = 'splash'//changing the id
+    splashPage.id = 'splash'//* changing the id
     
     const header = document.createElement('h1')
     header.innerHTML = '<img src="https://fontmeme.com/permalink/240220/4ae8056a49f5eb97f77bb099bc7028ea.png" alt="">'
@@ -85,9 +85,9 @@ function handleStartClick(){
     gameStart = true;
     firstPick = null;
     winner = false;
-    deck = shuffleDeck(createDeck()) //createDeck gets invoked first
+    deck = shuffleDeck(createDeck()) //* createDeck gets invoked first
     render()
-};// u need to update all impacted state, and just call the render button
+};//* u need to update all impacted state, and just call the render button
 
 function handleClick(e) {
     const clickedCardIndex = e.target.id; 
@@ -95,21 +95,21 @@ function handleClick(e) {
 
     if (
         clickedCard.isFlipped
-        ) //explain?
+        ) //! get rid of the click in between the boxes?
         return;
     
     clickedCard.flip()
 
-    if (firstPick) { // only if it is true, but firstpick null
+    if (firstPick) { //* only if it is true, but firstpick null
         console.log('this is second pick ')
-        const match = checkCards(firstPick, clickedCard) //do the cards match or not?
+        const match = checkCards(firstPick, clickedCard) //* do the cards match or not?
         
         if(!match){
             boardEl.removeEventListener('click', handleClick)
             setTimeout(function(){
                 clickedCard.flip()
                 firstPick.flip()
-                firstPick = null // youre done comparing the 2
+                firstPick = null //* youre done comparing the 2
                 boardEl.addEventListener('click', handleClick)
                 render()
             }, 1000)
@@ -134,12 +134,12 @@ function checkWinner() {
         } else {
             return false;
         }
-// have this function return true when the game is won or false otherwise.
+//TODO have this function return true when the game is won or false otherwise.
 };
 
 function renderWinnerPage() {
     const winnerPage = document.createElement('div')
-    winnerPage.id = 'winner'//changing the id
+    winnerPage.id = 'winner'
     
     const header = document.createElement('h1')
     header.innerHTML = '<img src="https://fontmeme.com/permalink/240228/1471d08b990f0ad5408f18efebb9de45.png" alt="">'
@@ -195,8 +195,8 @@ function createDeck(){
 
 //     return shuffledDeck
 // } 
-// the idea with what i'm having you do is you dont want to change the incoming data 
-// but you're creating a new shuffled deck based off the incoming one
+//* the idea with what i'm having you do is you dont want to change the incoming data 
+//* but you're creating a new shuffled deck based off the incoming one
 
 function shuffleDeck(newDeck) {
     const shuffledDeck = [...newDeck];
@@ -250,7 +250,7 @@ function createDisplay(){
     displayContainer.append(timerEl, turnsEl)
     return displayContainer
 };
-// ^all it does is create DOM elements
+//* ^all it does is create DOM elements
 
 function renderMain() {
     const mainPage = document.createElement('div')
@@ -259,11 +259,11 @@ function renderMain() {
     const display = createDisplay()
     mainPage.append(display)
     
-    boardEl.innerHTML = ''// before rendering the board, you ensure that any existing content inside boardEl is removed before appending the new board. This should prevent the duplication of the board-container element.
+    boardEl.innerHTML = ''//* before rendering the board, you ensure that any existing content inside boardEl is removed before appending the new board. This should prevent the duplication of the board-container element.
     renderBoard()
     mainPage.append(boardEl)
     
-    bodyEl.innerHTML = '' //clears the splash page
+    bodyEl.innerHTML = '' //* clears the splash page
     bodyEl.append(mainPage)
 };
 
