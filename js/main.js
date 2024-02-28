@@ -95,17 +95,16 @@ function handleStartClick(){
 };//* u need to update all impacted state, and just call the render button
 
 function handleClick(e) {
-    const clickedCardIndex = e.target.id; 
-    const clickedCard = deck[clickedCardIndex]
+    const clickedCardIndex = e.target.id; //* always console log 
+    const clickedCard = deck[clickedCardIndex] //* card class instance - object created from a class
+    console.log(clickedCard)
     
-    if (
-        clickedCard.isFlipped
-        ) //! get rid of the click in between the boxes?
-        return;
+    if (!clickedCard || clickedCard.isFlipped) return; //* clickedCard was a valid card, so you can check isFlipped property
         
         clickedCard.flip()
         
         if (firstPick) { //* only if it is true, but firstpick null
+            turns++
             console.log('this is second pick ')
             const match = checkCards(firstPick, clickedCard) //* do the cards match or not?
             
@@ -125,7 +124,6 @@ function handleClick(e) {
         } else {
             console.log('this is first pick ')
             firstPick = clickedCard
-            turns++
     }
     render() 
 }
@@ -135,7 +133,7 @@ function startTime () {
     
     timer = setInterval(function(){
         currentTimer++
-        startTimerEl.innerHTML = `<img src="https://fontmeme.com/permalink/240221/3a5350d392655cfb628566cb8ee0b398.png" alt="">${currentTimer}</img>`
+        render() //* the render display function is already handling displaying the time.
     }, 1000)
 }
 
@@ -203,7 +201,7 @@ function createDeck(){
 
     return newDeck;
 };
-
+//! no longer in use
 // function shuffleDeck(newDeck) {
 //     const shuffledDeck = [];
     
@@ -216,6 +214,7 @@ function createDeck(){
 
 //     return shuffledDeck
 // } 
+
 //* the idea with what i'm having you do is you dont want to change the incoming data 
 //* but you're creating a new shuffled deck based off the incoming one
 
@@ -266,7 +265,7 @@ function createDisplay(){
 
     const turnsEl = document.createElement('div')
     turnsEl.className = 'turns'
-    turnsEl.innerHTML = `<img src="https://fontmeme.com/permalink/240221/d93f51fb2e904bdf5dc8ddf7a0dfe4c4.png" alt="">${turns}</img>`; //* be sure to wrap the whole line in backticks
+    turnsEl.innerHTML = `<img src="https://fontmeme.com/permalink/240221/d93f51fb2e904bdf5dc8ddf7a0dfe4c4.png" alt="">${turns}</img>`; //* be sure to wrap the whole line in backticks. this is an html string
     
 
     displayContainer.append(timerEl, turnsEl)
