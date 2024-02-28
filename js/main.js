@@ -39,7 +39,7 @@ const boardEl = document.createElement('div');
 
 /*----- event listeners -----*/
 playBtn.addEventListener('click', handleStartClick)
-
+boardEl.addEventListener('click', handleClick)
 
 
 /*----- functions -----*/
@@ -102,12 +102,12 @@ function handleClick(e) {
         
         
         if(!match){
-            // remove eventlistner for the board here
+            boardEl.removeEventListener('click', handleClick)
             setTimeout(function(){
                 clickedCard.flip()
                 firstPick.flip()
                 firstPick = null // youre done comparing the 2
-                // add event listner back here
+                boardEl.addEventListener('click', handleClick)
                 render()
             }, 1000)
         } else {
@@ -197,7 +197,7 @@ function renderBoard() {
         boxEl.append(imgEl)
         boardEl.append(boxEl)
 
-        boxEl.addEventListener('click', handleClick)
+        // boxEl.addEventListener('click', handleClick) - dont do this. the parent is boardEl
         
 
     })
