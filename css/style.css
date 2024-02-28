@@ -74,4 +74,10 @@ h1 {
     pointer-events: none;
 }
 
+#winnerTimer {
+    margin: -3% 0% 0% 45%;
+    width: 11%;
+    background-color: rgba(77, 255, 0, 0.832);
+}
+
 
