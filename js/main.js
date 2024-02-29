@@ -129,8 +129,6 @@ function handleClick(e) {
 }
 
 function startTime () {
-    const startTimerEl = document.querySelector('.timer')
-    
     timer = setInterval(function(){
         currentTimer++
         render() //* the render display function is already handling displaying the time.
@@ -195,7 +193,7 @@ function createDeck(){
     const newDeck = [];
 
     POKEMON.forEach(function(poke){
-       newDeck.push(new Card(poke.name, poke.img))
+       newDeck.push(new Card(poke.name, poke.img)) //* instanstiating the class to create card instances
        newDeck.push(new Card(poke.name, poke.img))
     });
 
