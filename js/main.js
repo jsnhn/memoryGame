@@ -91,7 +91,7 @@ function handleStartClick(){
     currentTimer = 0;
     deck = shuffleDeck(createDeck()) //* createDeck gets invoked first
     render()
-    startTime() //* after the elements have been rendered in the DOM.  .timer element is present in the DOM before trying to access it in the startTime() function.
+    // startTime() //* after the elements have been rendered in the DOM.  .timer element is present in the DOM before trying to access it in the startTime() function.
 };//* u need to update all impacted state, and just call the render button
 
 function handleClick(e) {
