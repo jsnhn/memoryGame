@@ -39,6 +39,7 @@ const boardEl = document.createElement('div');
 const rstBtn = document.createElement('button')
 
 
+
 //*----- event listeners -----*/
 playBtn.addEventListener('click', handleStartClick)
 boardEl.addEventListener('click', handleClick)
@@ -91,7 +92,7 @@ function handleStartClick(){
     currentTimer = 0;
     deck = shuffleDeck(createDeck()) //* createDeck gets invoked first
     render()
-    // startTime() //* after the elements have been rendered in the DOM.  .timer element is present in the DOM before trying to access it in the startTime() function.
+    startTime() //* after the elements have been rendered in the DOM.  .timer element is present in the DOM before trying to access it in the startTime() function.
 };//* u need to update all impacted state, and just call the render button
 
 function handleClick(e) {
@@ -165,11 +166,15 @@ function renderWinnerPage() {
         allImgEl.append(imgEl)
     });
 
-    const winTime = document.createElement('div')
+    const winTime = document.createElement('div');
     winTime.id = 'winnerTimer';
-    winTime.innerHTML = `<img src="https://fontmeme.com/permalink/240221/3a5350d392655cfb628566cb8ee0b398.png" alt="">${currentTimer}</img>`
 
-    
+    const winContent = document.createElement('div');
+    winContent.className = 'win-content'
+    winContent.innerHTML = `<img src="https://fontmeme.com/permalink/240221/3a5350d392655cfb628566cb8ee0b398.png" alt="">${currentTimer}</img>`
+
+    winTime.appendChild(winContent)
+
     rstBtn.id = 'rst-btn'
     rstBtn.innerHTML = '<img src="https://fontmeme.com/permalink/240228/8926cac3a56e8ab22c7edd1b8c8f8710.png" alt="">'
 
@@ -259,12 +264,21 @@ function createDisplay(){
     
     const timerEl = document.createElement('div');
     timerEl.className = 'timer'
-    timerEl.innerHTML = `<img src="https://fontmeme.com/permalink/240221/3a5350d392655cfb628566cb8ee0b398.png" alt="">${currentTimer}</img>` //change this later to a text, or dont use h2
 
-    const turnsEl = document.createElement('div')
+    const timerContent = document.createElement('div');
+    timerContent.className = 'timer-content'
+    timerContent.innerHTML = `<img src="https://fontmeme.com/permalink/240221/3a5350d392655cfb628566cb8ee0b398.png" alt="">${currentTimer}</img>` //change this later to a text, or dont use h2
+
+    timerEl.appendChild(timerContent);
+
+    const turnsEl = document.createElement('div');
     turnsEl.className = 'turns'
-    turnsEl.innerHTML = `<img src="https://fontmeme.com/permalink/240221/d93f51fb2e904bdf5dc8ddf7a0dfe4c4.png" alt="">${turns}</img>`; //* be sure to wrap the whole line in backticks. this is an html string
+
+    const turnsContent = document.createElement('div');
+    turnsContent.className = 'turns-content'
+    turnsContent.innerHTML = `<img src="https://fontmeme.com/permalink/240221/d93f51fb2e904bdf5dc8ddf7a0dfe4c4.png" alt="">${turns}</img>`; //* be sure to wrap the whole line in backticks. this is an html string
     
+    turnsEl.appendChild(turnsContent);
 
     displayContainer.append(timerEl, turnsEl)
     return displayContainer

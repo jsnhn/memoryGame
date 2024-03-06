@@ -61,9 +61,9 @@ h1 {
 
 #display-container {
     display: flex;
-    gap: 35%;
+    gap: 42%;
     margin: 4% auto;
-    max-width: 36%;
+    max-width: 50%;
     background-color: rgba(0, 221, 255, 0.364);
 }
 
@@ -78,9 +78,35 @@ h1 {
 }
 
 #winnerTimer {
-    margin: -3% 0% 0% 45%;
-    width: 11%;
+    margin: -3% 0% 0% 42%;
+    width: 16%;
+    border: solid black;
     background-color: rgba(77, 255, 0, 0.832);
 }
 
 
+.timer-content {
+    display: flex;
+    align-items: center;
+    gap: 30%;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.turns-content {
+    display: flex;
+    align-items: center;
+    gap: 30%;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+.win-content {
+    display: flex;
+    align-items: center;
+    gap: 30%;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
